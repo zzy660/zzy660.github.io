@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试Netlify函数</title>
+</head>
+<body>
+    <h1>测试Netlify函数</h1>
+    <button onclick="testGet()">测试获取留言</button>
+    <button onclick="testAdd()">测试添加留言</button>
+    <div id="result"></div>
+
+    <script>
+        async function testGet() {
+            try {
+                const response = await fetch('/.netlify/functions/getGuestbook');
+                const text = await response.text();
+                document.getElementById('result').innerHTML = `<pre>状态: ${response.status}\n响应: ${text}</pre>`;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `错误: ${error.message}`;
+            }
+        }
+
+        async function testAdd() {
+            try {
+                const response = await fetch('/.netlify/functions/addGuestbook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: '测试用户',
+                        content: '测试留言内容',
+                        ip: '127.0.0.1'
+                    })
+                });
+                const text = await response.text();
+                document.getElementById('result').innerHTML = `<pre>状态: ${response.status}\n响应: ${text}</pre>`;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `错误: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

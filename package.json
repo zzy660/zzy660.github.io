@@ -1,0 +1,21 @@
+{
+  "name": "guestbook-jamstack",
+  "version": "1.0.0",
+  "description": "基于JAMstack架构的留言板系统",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo '静态文件已就绪'",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "guestbook",
+    "jamstack",
+    "netlify",
+    "static"
+  ],
+  "author": "萝卜服务器",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  }
+}
